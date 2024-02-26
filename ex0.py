@@ -1,5 +1,5 @@
 import requests  # εισαγωγή της βιβλιοθήκης
-
+import re
 
 def more(text):
     count = 0
@@ -12,7 +12,9 @@ def more(text):
                 break
 
 
-url = 'http://google.com/'  # προσδιορισμός του url
+url = 'http://facebook.com/'  # προσδιορισμός του url
+
+#if not url has http... TODO
 
 with requests.get(url) as response:  # το αντικείμενο response
     # html = response.text
@@ -23,8 +25,9 @@ with requests.get(url) as response:  # το αντικείμενο response
         print(f"{item:30s} {value}")
 
     print("--------")
-    cookies = response.cookies.get_dict()
+    cookies = response.headers.get("Set-Cookie")
 
-    print(cookies)
-
-    
+    if cookies:
+        print(f"Cookies are {cookies}")
+    else:
+        print("No cookies found")
