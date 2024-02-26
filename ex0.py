@@ -21,3 +21,8 @@ with requests.get(url) as response:  # το αντικείμενο response
     hdrs = response.headers
     for item, value in hdrs.items():
         print(f"{item:30s} {value}")
+
+    print("--------")
+    cookies = response.cookies.get_dict()
+
+    print(cookies)
